@@ -51,7 +51,7 @@ Wraith Reserves is a savings tracker designed to let users create goals, record 
 - **README.md** - Project documentation
 
 
-GENERAL LAYOUT: 
+## GENERAL LAYOUT
 Expo Router with a single stack:
 - Main Screen
 - Goal Details Screen
@@ -79,7 +79,10 @@ Expo Router with a single stack:
 - Star map that lights up more constallations as savings increase over time.
 - Toggle between the last 30 days and all time views for the graph.
 
+
+## Landing Page
 ![Landing Page](.Image Progress/Wraith Reserves - 01 - Landing Screen.jpg)
+
 ![Goal Details](.Image Progress/Wraith Reserves - 03 - Target Date Added AND Add More to Savings Goal.jpg)
 ![Updated Goal](.Image Progress/Wraith Reserves - 04 - More Added to Savings Goal.jpg)
 ![Updated Landing Page](.Image Progress/Wraith Reserves - 05 - Landing Screen Updated With Goals.jpg)

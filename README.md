@@ -81,13 +81,13 @@ Expo Router with a single stack:
 
 
 ## Landing Page
-![Landing Page](.Image Progress/Wraith Reserves - 01 - Landing Screen.jpg)
+![Landing Page](./Image%20Progress/Wraith%20Reserves%20-%2001%20-%20Landing%20Screen.jpg)
 
 ## Goal Details
-![Goal Details](./Image%20Progress/Wraith Reserves - 03 - Target Date Added AND Add More to Savings Goal.jpg)
+![Goal Details](./Image%20Progress/Wraith%20Reserves%20-%2003%20-%20Target%20Date%20Added%20AND%20Add%20More%20to%20Savings%20Goal.jpg)
 
 ## Updated Goal
-![Updated Goal](./Image%20Progress/Wraith Reserves - 04 - More Added to Savings Goal.jpg)
+![Updated Goal](./Image%20Progress/Wraith%20Reserves%20-%2004%20-%20More%20Added%20to%20Savings%20Goal.jpg)
 
 ## Updated Landing Page
-![Updated Landing Page](./Image%20Progress/Wraith Reserves - 05 - Landing Screen Updated With Goals.jpg)
+![Updated Landing Page](./Image%20Progress/Wraith%20Reserves%20-%2005%20-%20Landing%20Screen%20Updated%20With%20Goals.jpg)

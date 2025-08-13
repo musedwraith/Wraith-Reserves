@@ -80,14 +80,14 @@ Expo Router with a single stack:
 - Toggle between the last 30 days and all time views for the graph.
 
 
-## Landing Page
+### Landing Page
 <img src="./Image%20Progress/Wraith%20Reserves%20-%2001%20-%20Landing%20Screen.jpg" width="400">
 
-## Goal Details
+### Goal Details
 <img src="./Image%20Progress/Wraith%20Reserves%20-%2003%20-%20Target%20Date%20Added%20AND%20Add%20More%20to%20Savings%20Goal.jpg" width="400">
 
-## Updated Goal
+### Updated Goal
 <img src="./Image%20Progress/Wraith%20Reserves%20-%2004%20-%20More%20Added%20to%20Savings%20Goal.jpg" width="400">
 
-## Updated Landing Page
+### Updated Landing Page
 <img src="./Image%20Progress/Wraith%20Reserves%20-%2005%20-%20Landing%20Screen%20Updated%20With%20Goals.jpg" width="400">

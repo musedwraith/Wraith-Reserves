@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Wraith Reserves",
+    "slug": "wraith-reserves",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/wraith-jar-icon.png",
+    "scheme": "wraithreserves",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "splash": {
+      "image": "./assets/images/wraith-jar-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#A87BBE"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/wraith-jar-icon.png",
+        "backgroundColor": "#A87BBE"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.wraithreserves"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/wraith-jar-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/wraith-jar-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#A87BBE"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

@@ -57,9 +57,12 @@ export default function GoalScreen() {
         <Text style={{ color: "#A87BBE", fontSize: 20, fontWeight: "700" }}>{goal.name}</Text>
         <ProgressBar progress={progress} height={10} />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ color: "#aaa" }}>Saved {fmt(goal.saved)}</Text>
-          <Text style={{ color: "#aaa" }}>Remaining {fmt(remaining)}</Text>
-        </View>
+        <Text style={{ color: "#aaa" }}>
+          Saved {fmt(goal.saved)} ({Math.round(progress * 100)}%)
+        </Text>
+        <Text style={{ color: "#aaa" }}>Remaining {fmt(remaining)}</Text>
+      </View>
+
         <Text style={{ color: "#888" }}>Goal {fmt(goal.target)}</Text>
         {goal.targetDate && (
           <Text style={{ color: "#888" }}>

@@ -60,7 +60,7 @@ Expo Router with a single stack:
 ## Current Functionality
 1. Create a savings goal with a name and target amount.
 2. Add savings with an amount and an optional note.
-3. View the progress made toward reaching that savings goal based on the amount saved and the total desired amount.
+3. View the progress made toward reaching that savings goal based on the amount saved and the total desired amount in the form of a progress bar and a percentage.
 4. View records in reverse chronological order.
 5. Edit the name and target amount of the savings goal.
 6. Set a target date of 30 days.
@@ -69,10 +69,9 @@ Expo Router with a single stack:
 
 ## Future Enhancements
 - Custom date picker for target dates.
-- Percent made toward progress saved.
 - Multi-currency support.
 - Data export (CSV/JSON).
-- Goal deadlines where users see exactly how much they need to save eachd ay or week to stay on track.
+- Goal deadlines where users see exactly how much they need to save each day or week to stay on track.
 - A countdown timer in a cosmic style like a moon slowly eclipsling as the time runs out.
 - Progress bar has two overlays: an actual savings and where the savings should be by today.
 - Show a visual history of savings growth over time in a graph form.

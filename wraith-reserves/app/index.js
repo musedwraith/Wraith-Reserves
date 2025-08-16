@@ -62,8 +62,10 @@ export default function Dashboard() {
                 </View>
                 <ProgressBar progress={progress} />
                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 6 }}>
-                  <Text style={sub}>Amount Saved: {fmt(item.saved)}</Text>
-                  <Text style={sub}>Amount Remaining: {fmt(remaining)}</Text>
+                  <Text style={sub}>
+                    Saved {fmt(item.saved)} ({Math.round(progress * 100)}%)
+                  </Text>
+                  <Text style={sub}>Remaining {fmt(remaining)}</Text>
                 </View>
               </TouchableOpacity>
             </Link>

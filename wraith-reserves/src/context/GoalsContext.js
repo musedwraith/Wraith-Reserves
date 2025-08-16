@@ -6,6 +6,12 @@ const GoalsContext = createContext();
 
 const initialState = { goals: [], loaded: false };
 
+const setTargetDate = (goalId, millisOrNull) => {
+  const g = state.goals.find(x => x.id === goalId);
+  if (!g) return;
+  dispatch({ type: "UPDATE_GOAL", payload: { ...g, targetDate: millisOrNull } });
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case "LOAD":

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, FlatList, Alert } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, FlatList, Alert, Platform } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useLocalSearchParams, Link, useRouter } from "expo-router";
 import { useGoals } from "../../src/context/GoalsContext";
 import ProgressBar from "../../src/components/ProgressBar";
@@ -13,6 +14,11 @@ export default function GoalScreen() {
 
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [tempDate, setTempDate] = useState(
+    goal?.targetDate ? new Date(goal.targetDate) : new Date()
+  );
 
   const remaining = useMemo(() => Math.max(0, (goal?.target || 0) - (goal?.saved || 0)), [goal]);
   const progress  = useMemo(() => (goal?.target ? goal.saved / goal.target : 0), [goal]);
@@ -33,10 +39,31 @@ export default function GoalScreen() {
     setNote("");
   };
 
-  const pickTargetDate = () => {
-    const in30 = Date.now() + 30 * 24 * 60 * 60 * 1000; // 30 days from now
-    setTargetDate(goal.id, in30);
-    Alert.alert("Target date set to ~30 days from now (MVP).");
+  // Open the picker prefilled with current/selected date
+  const openDatePicker = () => {
+    setTempDate(goal.targetDate ? new Date(goal.targetDate) : new Date());
+    setShowDatePicker(true);
+  };
+
+  // Handle native change (Android commits immediately)
+  const onChangeDate = (_event, selected) => {
+    if (Platform.OS === "android") setShowDatePicker(false);
+    if (!selected) return; // dismissed
+    setTempDate(selected);
+    if (Platform.OS === "android") {
+      setTargetDate(goal.id, selected.getTime());
+    }
+  };
+
+  // iOS confirm (since picker can be inline)
+  const confirmIOSDate = () => {
+    setTargetDate(goal.id, tempDate.getTime());
+    setShowDatePicker(false);
+  };
+
+  // Clear the target date
+  const clearTargetDate = () => {
+    setTargetDate(goal.id, null);
   };
 
   const del = () => {
@@ -64,25 +91,60 @@ export default function GoalScreen() {
       </View>
 
         <Text style={{ color: "#888" }}>Goal {fmt(goal.target)}</Text>
-        {goal.targetDate && (
-          <Text style={{ color: "#888" }}>
-            Target date {new Date(goal.targetDate).toLocaleDateString()}
-          </Text>
-        )}
-        <View style={{ flexDirection: "row", gap: 8, marginTop: 8 }}>
-          <Link href={`/goal/edit/${goal.id}`} asChild>
-            <TouchableOpacity style={button}>
-              <Text style={buttonText}>Edit</Text>
-            </TouchableOpacity>
-          </Link>
-          <TouchableOpacity onPress={pickTargetDate} style={button}>
-            <Text style={buttonText}>Set Target Date</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={del} style={[button, { backgroundColor: "#3a1a1a" }]}>
-            <Text style={[buttonText, { color: "#ff6b6b" }]}>Delete</Text>
-          </TouchableOpacity>
-        </View>
+        {/* Target date row (NEW) */}
+<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
+  <Text style={{ color: "#888" }}>
+    {goal.targetDate
+      ? `Target date ${new Date(goal.targetDate).toLocaleDateString()}`
+      : "No target date"}
+  </Text>
+  <View style={{ flexDirection: "row", gap: 8 }}>
+    <TouchableOpacity onPress={openDatePicker} style={button}>
+      <Text style={buttonText}>{goal.targetDate ? "Change Date" : "Set Date"}</Text>
+    </TouchableOpacity>
+    {goal.targetDate && (
+      <TouchableOpacity onPress={clearTargetDate} style={[button, { backgroundColor: "#3a1a1a" }]}>
+        <Text style={[buttonText, { color: "#ff6b6b" }]}>Clear</Text>
+      </TouchableOpacity>
+    )}
+  </View>
+</View>
+
+{/* Keep your existing action row: Edit + Delete */}
+<View style={{ flexDirection: "row", gap: 8, marginTop: 8 }}>
+  <Link href={`/goal/edit/${goal.id}`} asChild>
+    <TouchableOpacity style={button}>
+      <Text style={buttonText}>Edit</Text>
+    </TouchableOpacity>
+  </Link>
+  <TouchableOpacity onPress={del} style={[button, { backgroundColor: "#3a1a1a" }]}>
+    <Text style={[buttonText, { color: "#ff6b6b" }]}>Delete</Text>
+  </TouchableOpacity>
+</View>
+
+{/* Native DateTimePicker (NEW) */}
+{showDatePicker && (
+  <View style={{ marginTop: 8 }}>
+    <DateTimePicker
+      value={tempDate}
+      mode="date"
+      display={Platform.OS === "ios" ? "inline" : "default"}
+      onChange={onChangeDate}
+      minimumDate={new Date()} // remove if you want to allow past dates
+    />
+    {Platform.OS === "ios" && (
+      <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 8, gap: 8 }}>
+        <TouchableOpacity onPress={() => setShowDatePicker(false)} style={[button, { backgroundColor: "#222" }]}>
+          <Text style={buttonText}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={confirmIOSDate} style={button}>
+          <Text style={buttonText}>Set Date</Text>
+        </TouchableOpacity>
       </View>
+    )}
+  </View>
+)}
+</View>
 
       {/* Add Saving */}
       <View style={{ backgroundColor: "#141414", borderRadius: 12, padding: 12, gap: 8 }}>
